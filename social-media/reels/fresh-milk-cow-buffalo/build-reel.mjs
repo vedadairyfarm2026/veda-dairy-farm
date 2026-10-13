@@ -22,15 +22,15 @@ function textLayer({ kicker, title, subtitle, footer, light = true }) {
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <style>
         .kicker { font-family: "Segoe UI", Arial, sans-serif; font-size: 31px; font-weight: 700; letter-spacing: 4px; fill: ${muted}; }
-        .title { font-family: Georgia, "Times New Roman", serif; font-size: 102px; font-weight: 700; fill: ${foreground}; }
+        .title { font-family: Georgia, "Times New Roman", serif; font-size: 84px; font-weight: 700; fill: ${foreground}; }
         .subtitle { font-family: "Segoe UI", Arial, sans-serif; font-size: 39px; font-weight: 600; fill: ${foreground}; }
         .footer { font-family: "Segoe UI", Arial, sans-serif; font-size: 31px; font-weight: 650; fill: ${foreground}; letter-spacing: 1px; }
       </style>
       <text x="72" y="232" class="kicker">${escapeXml(kicker)}</text>
       ${titleSvg}
       <text x="72" y="${620 + Math.max(0, titleLines.length - 2) * 86}" class="subtitle">${escapeXml(subtitle)}</text>
-      <rect x="72" y="1690" width="936" height="104" rx="52" fill="#0d4a31" fill-opacity="0.94" stroke="#e8c76a" stroke-width="3"/>
-      <text x="540" y="1756" text-anchor="middle" class="footer">${escapeXml(footer)}</text>
+      <rect x="72" y="1580" width="936" height="104" rx="52" fill="#0d4a31" fill-opacity="0.94" stroke="#e8c76a" stroke-width="3"/>
+      <text x="540" y="1646" text-anchor="middle" class="footer">${escapeXml(footer)}</text>
     </svg>`);
 }
 
