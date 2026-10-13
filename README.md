@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+SEO is configured for Veda Dairy Farm's confirmed domain and Ambheta address. See [SEO_SETUP.md](./SEO_SETUP.md) for the implemented pages, build checks, hosting requirements and Google Search Console / Business Profile launch steps.
+
 First, run the development server:
 
 ```bash

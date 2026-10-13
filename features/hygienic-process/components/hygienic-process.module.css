@@ -1,0 +1,163 @@
+.scene { position: relative; min-height: 520px; isolation: isolate; overflow: hidden; background: #c6cbb5; }
+.photo, .sceneShade { position: absolute; inset: 0; }
+.photo img { object-fit: cover; object-position: 55% center; }
+.photoEnter { opacity: 0; animation: sceneFade .9s ease both; }
+.camera { animation: cameraDrift 17s linear both; }
+.secondAnimal { position: absolute; inset: 0; opacity: 0; animation: secondAnimal var(--stage-duration,17000ms) linear both; }
+.sceneShade { pointer-events: none; background: linear-gradient(0deg, rgba(16,39,24,.86),rgba(16,39,24,.18) 30%,transparent 65%); }
+.sceneBadge { position: absolute; top: 22px; left: 22px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 13px; border: 1px solid rgba(246,250,230,.15); border-radius: 30px; color: #faf9ed; background: rgba(21,46,28,.72); font-size: .62rem; letter-spacing: .03em; }
+.sceneBadge > span { width: 6px; height: 6px; border-radius: 50%; background: #dfddb4; }
+.sceneCaption { position: absolute; left: 28px; right: 25px; bottom: 28px; color: white; }
+.sceneCaption > span { font-size: .66rem; letter-spacing: .1em; color: #d9e4cc; }
+.sceneCaption p { max-width: 510px; margin-top: 10px; font-family: var(--font-display); font-size: clamp(1.45rem,2.2vw,2rem); line-height: 1.2; text-wrap: balance; }
+.preload { position: absolute; width: 1px; height: 1px; overflow: hidden; opacity: 0; pointer-events: none; }
+.loadingScene { position: absolute; left: 22px; top: 78px; padding: 9px 13px; border-radius: 8px; background: #fcfaf4; color: var(--forest-900); font-size: .7rem; }
+.brandReveal { position: absolute; left: 28px; bottom: 135px; display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 10px; border-radius: 12px; background: rgba(252,250,244,.95); animation: brandIn 1.7s ease both; }
+.brandReveal img { object-fit: contain; border-radius: 50%; width: 52px; height: 52px; }
+.brandReveal strong, .brandReveal small { display: block; }
+.brandReveal strong { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; }
+.brandReveal small { margin-top: 5px; font-size: .66rem; color: var(--forest-700); }
+.imageFallback { display: grid; align-content: center; justify-items: center; height: 100%; min-height: inherit; padding: 40px; background: #e8eee0; }
+.imageFallback svg { width: 200px; }
+.imageFallback p { font-family: var(--font-display); font-size: 1.4rem; text-align: center; }
+.story { display: flex; flex-direction: column; min-width: 0; padding: 27px 28px 23px; color: #faf8ed; }
+.stageMeta { display: flex; justify-content: space-between; gap: 10px; color: #c4d2b7; font-size: .6rem; font-weight: 500; letter-spacing: .06em; }
+.stageMeta > span:last-child { color: #dfd4a9; white-space: nowrap; }
+.storyContent { flex: 1; padding-top: 20px; }
+.detail { width: 98px; height: 56px; color: #d7e0c8; margin-bottom: 16px; }
+.detail svg { display: block; width: 100%; height: 100%; }
+.story h3 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 400; line-height: 1.15; min-height: 2.3em; letter-spacing: -.015em; text-wrap: balance; }
+.storyContent > p { margin-top: 14px; font-size: .82rem; line-height: 1.75; min-height: 10.5em; color: #d0d9c7; }
+.careNote { display: flex; align-items: start; gap: 9px; margin-top: 18px; border-top: 1px solid #446149; padding-top: 14px; min-height: calc(3.4em + 15px); font-size: .69rem; line-height: 1.7; color: #e1e5c9; }
+.careNote > span { flex: 0 0 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; background: #35593a; color: #e3e8cb; font-size: .65rem; }
+.controls { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 20px; }
+.controls button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; color: #f8f5e7; background: transparent; min-height: 44px; }
+.controls svg { width: 17px; height: 17px; flex: 0 0 auto; }
+.controls .playButton { font-size: .73rem; font-weight: 500; }
+.navigation { display: flex; align-items: center; gap: 2px; }
+.navigation button { width: 34px; border-radius: 50%; }
+.controls button:hover:enabled { background: #35593a; }
+.controls button:disabled { opacity: .45; cursor: default; }
+.timeline { margin-top: 24px; overflow-x: auto; padding: 5px 4px 10px; scrollbar-width: thin; scrollbar-color: #b8c6a5 transparent; }
+.timeline ol { list-style: none; display: grid; grid-template-columns: repeat(10,minmax(84px,1fr)); gap: 11px; }
+.timeline button { display: flex; flex-direction: column; align-items: start; gap: 9px; padding: 7px 2px; width: 100%; min-height: 94px; background: none; border: 0; cursor: pointer; text-align: left; color: var(--forest-700); }
+.stepNumber { display: grid; place-items: center; width: 31px; height: 31px; border: 1px solid #c4ceb8; border-radius: 50%; font-size: .66rem; font-weight: 500; transition: color .3s,background .3s; }
+.stepLabel { min-height: 32px; font-size: .69rem; line-height: 1.5; font-weight: 400; }
+.stepTrack { display: block; width: 100%; height: 3px; border-radius: 3px; background: #d3ddc7; overflow: hidden; }
+.stepTrack > span { display: block; height: 100%; width: 100%; background: #738a55; transform: scaleX(0); transform-origin: left; }
+.timeline [data-complete="true"] .stepTrack > span { transform: scaleX(1); }
+.timeline [data-active="true"] .stepNumber { color: #fff; background: var(--forest-900); border-color: var(--forest-900); }
+.timeline [data-active="true"] .stepLabel { color: var(--forest-950); font-weight: 600; }
+.timeline button:hover .stepNumber { border-color: var(--forest-900); box-shadow: 0 0 0 3px #e0e8d3; }
+.stepTrack > .stepProgress { animation: stageProgress var(--stage-duration,8500ms) linear both; }
+.section[data-playing="false"] .camera, .section[data-playing="false"] .secondAnimal, .section[data-playing="false"] .stepProgress, .section[data-playing="false"] svg * { animation-play-state: paused; }
+.sectionFoot { display: flex; justify-content: space-between; align-items: start; gap: 22px; margin-top: 13px; padding-top: 21px; border-top: 1px solid #d1dac5; }
+.sectionFoot > p { color: var(--forest-700); font-size: .67rem; line-height: 1.8; }
+.sectionFoot > p > span { padding: 0 7px; }
+.allSteps { max-width: 500px; }
+.allSteps summary { cursor: pointer; font-size: .72rem; font-weight: 500; color: var(--forest-900); list-style: none; }
+.allSteps summary::-webkit-details-marker { display: none; }
+.allSteps summary > span { margin-left: 13px; }
+.allSteps[open] summary { margin-bottom: 22px; }
+.allSteps ol { padding-left: 24px; font-size: .8rem; line-height: 1.7; }
+.allSteps li + li { margin-top: 17px; }
+.allSteps h3 { font-size: .9rem; margin-bottom: 5px; font-weight: 500; }
+.allSteps p { color: var(--forest-700); }
+.visualNote { margin-top: 10px; font-size: .62rem; color: var(--forest-700); }
+.noScript { margin-top: 16px; font-size: .8rem; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* Method details: liquid flow, gentle hand gestures and equipment signals. */
+.arrival { animation: arrival 3s ease-in-out infinite; }
+.waterFlow { animation: waterFlow 1s linear infinite; }
+.handWash { transform-origin: 70px 70px; animation: wash 2.4s ease-in-out infinite; }
+.fodder { transform-origin: center bottom; animation: fodder 3s ease-in-out infinite; }
+.feedPellets { animation: pellets 3s ease-in-out infinite; }
+.heart { transform-origin: 79px 27px; animation: heart 3s ease-in-out infinite; }
+.scan { animation: scan 4s ease-in-out infinite; }
+.towelWipe { animation: wipe 3s ease-in-out infinite; }
+.waterWave { animation: wave 2.5s ease-in-out infinite; }
+.milkStream { animation: waterFlow .8s linear infinite; }
+.handMilkLeft { transform-origin: 43px 44px; animation: handMilk 1.6s ease-in-out infinite; }
+.handMilkRight { transform-origin: 66px 44px; animation: handMilk 1.6s ease-in-out .8s infinite; }
+.milkPipe { animation: pipeFlow 1.5s linear infinite; }
+.cooling { animation: cool 3s ease-in-out infinite; }
+.sunrise { animation: sun 6s ease-in-out infinite; }
+.sparkle { animation: cool 3s ease-in-out infinite; }
+@keyframes sceneFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes secondAnimal { 0%, 47% { opacity: 0; } 53%, 100% { opacity: 1; } }
+@keyframes cameraDrift { from { transform: scale(1.015) translateX(-.2%); } to { transform: scale(1.075) translateX(.2%); } }
+@keyframes brandIn { 0%, 15% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes stageProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes arrival { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+@keyframes waterFlow { to { stroke-dashoffset: -22; } }
+@keyframes handMilk { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@keyframes wash { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes fodder { 0%, 100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+@keyframes pellets { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(2px); } }
+@keyframes heart { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes scan { 0%, 100% { transform: translateY(-20px); opacity: .3; } 50% { transform: translateY(0); opacity: .8; } }
+@keyframes wipe { 0%, 100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
+@keyframes wave { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(1px); } }
+@keyframes pipeFlow { to { stroke-dashoffset: -30; } }
+@keyframes cool { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+@keyframes sun { 0%, 100% { transform: translateY(2px); } 50% { transform: translateY(-2px); } }
+
+
+@media (max-width: 1100px) {
+  .story { padding: 24px 24px 20px; }
+  .story h3 { font-size: 1.75rem; }
+  .storyContent > p { min-height: 12.25em; }
+  .navigation button { width: 32px; }
+  .timeline ol { gap: 10px; }
+}
+@media (max-width: 850px) {
+  .scene { min-height: 0; aspect-ratio: 1.6; }
+  .story { padding: 25px 30px; }
+  .storyContent { display: grid; grid-template-columns: 100px 1fr; gap: 0 22px; padding-top: 18px; }
+  .detail { grid-row: span 3; margin-top: 5px; }
+  .story h3 { min-height: 0; font-size: 1.95rem; }
+  .storyContent > p { min-height: 7em; margin-top: 12px; font-size: .85rem; }
+  .careNote { min-height: 0; margin-top: 16px; }
+  .controls { padding-top: 12px; }
+  .timeline ol { grid-template-columns: repeat(10,92px); }
+}
+@media (max-width: 600px) {
+  .scene { aspect-ratio: 1.35; }
+  .sceneBadge { top: 15px; left: 15px; font-size: .58rem; padding: 9px 12px; }
+  .sceneCaption { left: 20px; right: 20px; bottom: 22px; }
+  .sceneCaption p { font-size: 1.45rem; }
+  .sceneCaption > span { font-size: .6rem; }
+  .story { padding: 23px 23px 19px; }
+  .storyContent { display: block; }
+  .detail { width: 82px; height: 48px; margin: 0 0 14px; }
+  .story h3 { min-height: 2.3em; font-size: 1.8rem; }
+  .storyContent > p { min-height: 12.25em; font-size: .82rem; line-height: 1.75; }
+  .careNote { min-height: calc(3.4em + 15px); font-size: .7rem; }
+  .controls { padding-top: 16px; }
+  .navigation { gap: 2px; }
+  .navigation button { width: 35px; }
+  .timeline { margin-top: 19px; }
+  .timeline ol { gap: 9px; }
+  .stepLabel { font-size: .71rem; }
+  .sectionFoot { flex-direction: column; gap: 17px; padding-top: 19px; }
+  .sectionFoot > p { font-size: .64rem; }
+  .sectionFoot > p > span { padding: 0 3px; }
+  .brandReveal { left: 16px; bottom: 109px; padding: 9px 14px 9px 8px; }
+  .brandReveal img { width: 40px; height: 40px; }
+  .brandReveal strong { font-size: 1rem; }
+  .brandReveal small { font-size: .59rem; }
+}
+@media (max-width: 360px) {
+  .story { padding: 22px 18px 17px; }
+  .storyContent > p { min-height: 14em; }
+  .controls .playButton { font-size: .69rem; }
+  .navigation button { width: 32px; }
+  .brandReveal strong { font-size: .91rem; }
+}
+.section[data-motion="reduced"] *, .section[data-motion="reduced"] *::before, .section[data-motion="reduced"] *::after { animation: none !important; transition: none !important; }
+.section[data-motion="reduced"] .photoEnter { opacity: 1; }
+.section[data-motion="reduced"] [data-active="true"] .stepTrack > span { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .section *, .section *::before, .section *::after { animation: none !important; transition: none !important; }
+  .photoEnter { opacity: 1; }
+}
