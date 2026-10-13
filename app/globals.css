@@ -38,11 +38,11 @@
     --forest-950: #163626;
     --forest-900: #1d422e;
     --forest-800: #36513b;
-    --forest-700: #5b6b55;
+    --forest-700: #52614b;
     --forest-600: #53735e;
     --sage-100: #e8eee0;
     --sage-200: #ceddc0;
-    --gold-600: #ad843f;
+    --gold-600: #9b7433;
     --gold-700: #936d2e;
     --font-display: var(--font-veda-display), Georgia, "Times New Roman", serif;
     --line: #e1e5d8;
@@ -72,13 +72,16 @@
   }
 
   :focus-visible {
-    outline: 3px solid var(--gold-600);
-    outline-offset: 5px;
+    outline: 3px solid #7d5a22;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 2px #faf8f0;
   }
 
   section[id] {
     scroll-margin-top: 96px;
   }
+
+  :where(a, button, summary) { scroll-margin-top: 104px; }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -86,22 +89,24 @@
 }
 
 @utility veda-section {
-  @apply mx-auto max-w-[1240px] px-[22px] py-[58px] min-[601px]:px-9 min-[601px]:py-[90px];
+  @apply mx-auto max-w-[1240px] px-5 py-14 min-[601px]:px-8 min-[601px]:py-20 min-[1024px]:px-9 min-[1024px]:py-[88px];
 }
 
 @utility veda-heading {
-  @apply mt-[17px] font-display text-[2.65rem] leading-[1.12] font-normal tracking-[-.025em] text-balance min-[601px]:text-[clamp(2.6rem,4vw,3.65rem)];
-  & em { color: #748456; font-weight: 400; }
+  @apply mt-4 font-display text-[clamp(2.125rem,8.8vw,2.75rem)] leading-[1.14] font-normal tracking-[-.025em] text-balance min-[601px]:text-[clamp(2.5rem,4vw,3.5rem)];
+  & em { color: #5e7546; font-weight: 400; }
 }
 
 @utility veda-kicker {
-  @apply text-[.61rem] font-semibold tracking-[.12em] text-[#647343] uppercase min-[601px]:text-[.68rem] min-[601px]:tracking-[.14em];
+  @apply text-xs font-semibold tracking-[.12em] text-[#50633b] uppercase;
 }
 
 @utility veda-link {
-  @apply mt-[18px] inline-flex items-center gap-5 border-b border-[#adbba1] pt-[5px] pb-2 text-[.76rem] font-medium motion-safe:transition-[gap] hover:gap-[27px];
+  @apply mt-5 inline-flex min-h-11 items-center gap-3 border-b border-[#8d9e7c] py-2 text-sm font-semibold motion-safe:transition-[gap] hover:gap-5;
+  & svg { width: 20px; height: 20px; flex-shrink: 0; }
 }
 
 @utility veda-button {
-  @apply inline-flex min-h-[50px] items-center justify-center gap-[27px] rounded-[30px] px-[23px] py-[14px] text-[.8rem] font-medium motion-safe:transition-colors [&>span]:text-[1.15rem];
+  @apply inline-flex min-h-[52px] items-center justify-center gap-3 rounded-full px-6 py-[14px] text-[.9375rem] font-semibold motion-safe:transition-colors;
+  & svg { width: 20px; height: 20px; flex-shrink: 0; }
 }

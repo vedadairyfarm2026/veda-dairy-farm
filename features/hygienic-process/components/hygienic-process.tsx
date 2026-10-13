@@ -7,7 +7,7 @@ import { ProcessDetail } from "./process-detail";
 import styles from "./hygienic-process.module.css";
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const SCENE_SIZES = "(max-width: 600px) calc(100vw - 44px), (max-width: 850px) calc(100vw - 72px), (max-width: 1240px) calc(62.3vw - 45px), 728px";
+const SCENE_SIZES = "(max-width: 600px) calc(100vw - 40px), (max-width: 850px) calc(100vw - 64px), (max-width: 1023px) calc(62.3vw - 40px), (max-width: 1240px) calc(62.3vw - 45px), 728px";
 function subscribeMotion(callback: () => void) {
   const query = window.matchMedia(MOTION_QUERY);
   query.addEventListener("change", callback);
@@ -35,7 +35,7 @@ export function HygienicProcess() {
   const timeline = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [outgoing, setOutgoing] = useState<number | null>(null);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [inView, setInView] = useState(false);
   const [loaded, setLoaded] = useState<Record<number, boolean>>({});
   const [failed, setFailed] = useState<Record<number, boolean>>({});
@@ -112,17 +112,18 @@ export function HygienicProcess() {
   }
 
   return (
-    <section className={`${styles.section} bg-[#eef1e4] px-[22px] pt-[58px] pb-10 text-forest-950 min-[601px]:px-[max(36px,calc((100vw-1168px)/2))] min-[601px]:py-20`} id="process" aria-labelledby="process-heading"
+    <section className={`${styles.section} bg-[#eef1e4] px-5 pt-14 pb-10 text-forest-950 min-[601px]:px-8 min-[1024px]:px-[max(36px,calc((100vw-1168px)/2))] min-[601px]:py-20`} id="process" aria-labelledby="process-heading"
       style={{ "--stage-duration": `${duration}ms` } as CSSProperties}
       data-motion={reducedMotion ? "reduced" : "full"} data-playing={running}>
       <div className="mb-[27px] grid grid-cols-1 items-end gap-[21px] min-[601px]:mb-[35px] min-[601px]:grid-cols-[1.2fr_.8fr] min-[601px]:gap-8 min-[1101px]:gap-[60px]">
         <div>
           <p className="veda-kicker">Care in every drop</p>
-          <h2 className="veda-heading text-[2.6rem] max-[360px]:text-[2.35rem]" id="process-heading">Our Hygienic<br /><em>Milking Process.</em></h2>
+          <h2 className="veda-heading" id="process-heading">Our hygienic<br /><em>milking process.</em></h2>
         </div>
         <div className="max-w-[355px] pb-[5px]">
-          <p className="text-[.81rem] leading-[1.8] text-forest-700 min-[601px]:text-[.87rem]">From the first morning light to the final seal, follow the little acts of care that make a world of difference.</p>
-          <span className="mt-3 flex items-center gap-[9px] text-[.65rem] min-[601px]:mt-[15px] min-[601px]:text-[.69rem]"><span className="text-[1.05rem] text-[#8c9a62]" aria-hidden="true">✦</span> 10 thoughtful steps. One promise of freshness.</span>
+          <p className="text-base leading-[1.8] text-forest-700">From the first morning light to the final seal, follow the little acts of care that make a world of difference.</p>
+          <span className="mt-4 flex items-center gap-2 text-sm"><span className="text-[1.05rem] text-[#647d4c]" aria-hidden="true">✦</span> 10 thoughtful steps. One promise of freshness.</span>
+          <p className="mt-2 text-sm leading-6 text-forest-700">Play the journey or choose a step below.</p>
         </div>
       </div>
 

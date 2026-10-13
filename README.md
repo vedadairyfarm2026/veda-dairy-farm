@@ -50,3 +50,11 @@ Before development and production builds, `scripts/optimize-images.mjs` uses Sha
 CSS and IntersectionObserver handle reveal and hover effects. The hero stays visible on initial load, reduced motion is respected, and the process journey stops work while paused, offscreen or in a hidden tab. It preloads only the next scene while running, at low priority, using the same responsive sizes as the displayed image.
 
 `check:performance` checks every exported page for responsive image files, keeps modern-browser initial JavaScript under 180 KiB gzip, limits the 480px hero to 80 KiB, and checks Cloudflare's asset/file limits and cache rules. These are build-size checks; field Core Web Vitals still depend on the deployed host and visitors' devices and connections.
+
+## Design and responsive review
+
+The design review retained the cream, forest green, display serif and farm artwork, while addressing small text, crowded product actions, inconsistent page layouts and cramped phone controls. The homepage now has a clear ordering action alongside product browsing. Product images open their detail pages, with separate WhatsApp enquiry actions. Product and delivery pages share the same navigation, footer, typography and native FAQ accordion.
+
+Phone layouts use compact product rows and full-width primary actions. Main reading text is 16px, with smaller secondary text; primary controls and navigation buttons have at least 44px touch areas. The mobile menu overlays the page so section links remain correctly positioned beneath the sticky header. The process starts when visitors press Play and supports pause and manual step selection, keeping the content stable for reading.
+
+The production export was visually reviewed in Chrome at 320px, 390px, 768px and 1366px, with no page-level horizontal overflow at those widths. Milk and delivery pages, FAQ expansion, menu navigation and process controls were checked on a 390px viewport. Representative text/button contrast checks passed 4.5:1, including body text on cream at 6.23:1 and white primary-button text at 11.22:1. These checks address [reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html), [text contrast](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum) and comfortable touch targets; they are not a complete accessibility audit.
