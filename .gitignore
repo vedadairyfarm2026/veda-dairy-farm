@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+/public/assets/optimized/
+/config/image-manifest.json
 
 # production
 /build

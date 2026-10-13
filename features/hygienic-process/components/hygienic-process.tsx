@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { m } from "motion/react";
 import { type CSSProperties, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { processStages, STAGE_DURATION_MS } from "../data/stages";
 import { ProcessDetail } from "./process-detail";
 import styles from "./hygienic-process.module.css";
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const SCENE_SIZES = "(max-width: 600px) calc(100vw - 44px), (max-width: 850px) calc(100vw - 72px), (max-width: 1240px) calc(62.3vw - 45px), 728px";
 function subscribeMotion(callback: () => void) {
   const query = window.matchMedia(MOTION_QUERY);
   query.addEventListener("change", callback);
@@ -58,6 +58,12 @@ export function HygienicProcess() {
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (outgoing === null || !ready) return;
+    const timeout = window.setTimeout(() => setOutgoing(null), 950);
+    return () => window.clearTimeout(timeout);
+  }, [outgoing, active, ready]);
 
   useEffect(() => {
     const rail = timeline.current;
@@ -123,49 +129,45 @@ export function HygienicProcess() {
       <div ref={journey} className="grid grid-cols-1 overflow-hidden rounded-[15px] bg-forest-900 shadow-[0_14px_30px_rgba(32,53,28,.05)] min-[601px]:rounded-[20px] min-[851px]:grid-cols-[1.65fr_1fr]" id="process-scene" aria-label={`Step ${active + 1}: ${stage.title}`}>
         <div className={styles.scene}>
           {outgoing !== null && outgoing !== active && !failed[outgoing] && <div className={styles.photo} aria-hidden="true">
-            <Image src={processStages[outgoing].image} alt="" fill sizes="(max-width: 760px) 100vw, 60vw" />
+            <Image src={processStages[outgoing].image} alt="" fill sizes={SCENE_SIZES} />
           </div>}
           {!failed[active] && <div key={`${active}-${replayKey}`} className={`${styles.photo} ${ready ? styles.photoEnter : ""}`}>
-            <Image src={stage.image} alt={stage.alt} fill sizes="(max-width: 760px) 100vw, (max-width: 1100px) 55vw, 60vw"
+            <Image src={stage.image} alt={stage.alt} fill sizes={SCENE_SIZES}
               className={styles.camera} onLoad={() => setLoaded((items) => items[active] ? items : { ...items, [active]: true })}
               onError={() => setFailed((items) => ({ ...items, [active]: true }))} />
             {secondaryImage && !reducedMotion && !secondaryFailed && <div className={styles.secondAnimal}>
               <Image src={secondaryImage} alt="" aria-hidden="true" fill
-                sizes="(max-width: 760px) 100vw, (max-width: 1100px) 55vw, 60vw"
+                sizes={SCENE_SIZES}
                 loading={inView ? "eager" : "lazy"}
                 onLoad={() => setSecondaryLoaded(true)} onError={() => setSecondaryFailed(true)} />
             </div>}
           </div>}
           {!ready && <span className={styles.loadingScene} role="status">Preparing this scene…</span>}
           {failed[active] && <div className={styles.imageFallback}><ProcessDetail stage={active} /><p>{stage.caption}</p></div>}
-          {inView && active < processStages.length - 1 && <div className={styles.preload} aria-hidden="true">
-            <Image src={processStages[active + 1].image} alt="" width={1200} height={675} loading="eager" sizes="(max-width: 760px) 100vw, 60vw"
+          {running && active < processStages.length - 1 && <div className={styles.preload} aria-hidden="true">
+            <Image src={processStages[active + 1].image} alt="" width={1536} height={1024} loading="eager" fetchPriority="low" sizes={SCENE_SIZES}
               onLoad={() => setLoaded((items) => items[active + 1] ? items : { ...items, [active + 1]: true })} />
           </div>}
           <div className={styles.sceneShade} />
           <span className={styles.sceneBadge}><span aria-hidden="true" /> A morning at Veda</span>
-          <m.div className={styles.sceneCaption} key={`caption-${active}`}
-            initial={reducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.6 }}>
+          <div className={`${styles.sceneCaption} ${styles.contentEnter}`} key={`caption-${active}`}>
             <span>{String(active + 1).padStart(2, "0")} / 10</span>
             <p>{stage.caption}</p>
-          </m.div>
+          </div>
           {active === 9 && <div className={styles.brandReveal}>
-            <Image src="/assets/veda-logo.png" alt="Veda Dairy Farm" width={64} height={64} />
+            <Image src="/assets/design/veda-logo.webp" alt="Veda Dairy Farm" width={64} height={64} />
             <span><strong>Veda Dairy Farm</strong><small>Freshness You Can Trust.</small></span>
           </div>}
         </div>
 
         <div className={styles.story}>
           <div className={styles.stageMeta}><span>{stage.category}</span><span>Step {String(active + 1).padStart(2, "0")}</span></div>
-          <m.div className={styles.storyContent} key={active}
-            initial={reducedMotion ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.5 }}>
+          <div className={`${styles.storyContent} ${styles.contentEnter}`} key={active}>
             <div className={styles.detail}><ProcessDetail stage={active} /></div>
             <h3>{stage.title}</h3>
             <p>{stage.description}</p>
             <div className={styles.careNote}><span aria-hidden="true">✓</span>{stage.care}</div>
-          </m.div>
+          </div>
           <div className={styles.controls}>
             <button type="button" className={styles.playButton} disabled={reducedMotion}
               onClick={() => active === 9 && !playing ? replay() : setPlaying((value) => !value)}

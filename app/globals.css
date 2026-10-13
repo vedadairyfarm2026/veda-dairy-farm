@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@keyframes veda-reveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .veda-reveal-enter { animation: veda-reveal .65s cubic-bezier(.22,1,.36,1) var(--reveal-delay,0s) both; }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .veda-animated-card { transition: transform .25s ease-out; }
+  .veda-animated-card:hover { transform: translateY(-5px); }
+}
+
 @theme inline {
   --color-cream-50: var(--cream-50);
   --color-forest-950: var(--forest-950);

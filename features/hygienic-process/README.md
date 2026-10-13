@@ -1,6 +1,6 @@
 # Veda hygienic hand-milking journey
 
-The homepage renders `HygienicProcess` after its farm-care introduction. It uses the existing Next.js / React setup, CSS modules, local WebP assets and small educational SVG animations; no runtime dependencies were added.
+The homepage renders `HygienicProcess` after its farm-care introduction. It uses the existing Next.js / React setup, CSS modules, responsive local WebP assets and small educational SVG animations. The animation library has been replaced by CSS effects.
 
 The worker in the illustrative photographs is based on the user's supplied portrait, wearing clean workwear and protective headwear. All collection scenes depict traditional **hand milking**. The images were created with the built-in image-generation tool and optimised with the already installed Sharp package. Eleven scene images cover ten stages, including separate cow and buffalo milking views.
 
@@ -11,6 +11,8 @@ The worker in the illustrative photographs is based on the user's supplied portr
 3. Keep the ten stages in order: arrival → handwashing and drying → feed preparation → animal inspection → individual cleaning and drying → feeding and water → separate foremilk check → hand milking → filtering and prompt cooling → quality check, sealing and chilled delivery.
 4. Use `asset-prompts.json` for the exact image prompts and `public/assets/process/worker-reference.webp` as the identity/outfit reference for future generated scenes. It is a generated reference image; the original portrait is not bundled with the site.
 5. Change `STAGE_DURATION_MS` in `data/stages.ts` to adjust pacing. Stage 8 has a 17-second override and a `secondaryImage` for buffalo hand milking; it dissolves from cow to buffalo halfway through. The timer and timeline animation use the same stage duration.
+
+Development and production builds generate content-hashed image variants automatically. Original scene files stay in the repository; only the generated variants are included in the deployment. The hidden next-scene image shares the displayed image's sizes, loads at low priority only during playback, and disappears when playback is paused. Outgoing photos are removed after their crossfade completes.
 
 ## Animation and accessibility
 

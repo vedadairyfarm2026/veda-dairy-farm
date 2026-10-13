@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Geist } from "next/font/google";
-import { AnimationProvider } from "@/features/animations/components/page-animations";
 import { BusinessStructuredData } from "@/features/seo/components/structured-data";
 import { homeDescription, homeTitle, isIndexable, siteUrl } from "@/config/seo";
 import { siteConfig } from "@/config/site";
@@ -35,7 +34,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${displayFont.variable}`}>
-      <body><BusinessStructuredData /><AnimationProvider>{children}</AnimationProvider></body>
+      <body><BusinessStructuredData />{children}</body>
     </html>
   );
 }

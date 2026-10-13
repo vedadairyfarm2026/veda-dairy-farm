@@ -2,6 +2,7 @@
 .photo, .sceneShade { position: absolute; inset: 0; }
 .photo img { object-fit: cover; object-position: 55% center; }
 .photoEnter { opacity: 0; animation: sceneFade .9s ease both; }
+.contentEnter { animation: contentIn .5s ease both; }
 .camera { animation: cameraDrift 17s linear both; }
 .secondAnimal { position: absolute; inset: 0; opacity: 0; animation: secondAnimal var(--stage-duration,17000ms) linear both; }
 .sceneShade { pointer-events: none; background: linear-gradient(0deg, rgba(16,39,24,.86),rgba(16,39,24,.18) 30%,transparent 65%); }
@@ -84,6 +85,7 @@
 .sunrise { animation: sun 6s ease-in-out infinite; }
 .sparkle { animation: cool 3s ease-in-out infinite; }
 @keyframes sceneFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes contentIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes secondAnimal { 0%, 47% { opacity: 0; } 53%, 100% { opacity: 1; } }
 @keyframes cameraDrift { from { transform: scale(1.015) translateX(-.2%); } to { transform: scale(1.075) translateX(.2%); } }
 @keyframes brandIn { 0%, 15% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
