@@ -3,6 +3,8 @@ import Link from "next/link";
 import { products, promisePoints, siteConfig } from "@/config/site";
 import { HygienicProcess } from "@/features/hygienic-process/components/hygienic-process";
 import { AnimatedCard, Reveal } from "@/features/animations/components/page-animations";
+import { MilkPourAnimation } from "@/features/animations/components/milk-pour-animation";
+import { FarmDeliveryAnimation } from "@/features/animations/components/farm-delivery-animation";
 import { SiteHeader } from "./site-header";
 import { SiteFooter } from "./site-footer";
 import { SiteIcon } from "./site-icon";
@@ -44,7 +46,7 @@ export function HomePage() {
             <div className={styles.photoCaption}><SiteIcon name="sun" />Our farm. Your everyday goodness.</div>
           </div>
           <div className={styles.heroStamp} aria-label="Farm fresh, made with care"><span>Farm fresh</span><SiteIcon name="sun" /><span>Made with care</span></div>
-          <a className={styles.heroNote} href="#story"><SiteIcon name="leaf" /><span><strong>Good care. Good dairy.</strong><small>Discover the Veda way</small></span></a>
+          <div className={styles.heroPour}><MilkPourAnimation /></div>
         </div>
       </section>
 
@@ -62,7 +64,7 @@ export function HomePage() {
         <div className={styles.productGrid}>
           {products.map((product, index) => <AnimatedCard className={styles.productCard} key={product.slug}>
             <Link className={styles.productImage} href={`/products/${product.slug}`} aria-label={`Explore ${product.title.toLowerCase()}`}>
-              <Image src={product.image} alt={product.title} fill sizes="(max-width: 359px) 88px, (max-width: 479px) 108px, (max-width: 600px) calc(50vw - 30px), (max-width: 1023px) calc(50vw - 44px), 274px" />
+              <Image src={product.image} alt={product.title} fill sizes="(max-width: 359px) 112px, (max-width: 479px) 128px, (max-width: 600px) calc(50vw - 30px), (max-width: 1023px) calc(50vw - 44px), 274px" />
               <span className={styles.productNumber}>0{index + 1}</span>
             </Link>
             <div className={styles.productInfo}><span className={styles.productCategory}>{product.category}</span><h3><Link href={`/products/${product.slug}`}>{product.title}</Link></h3><p>{product.description}</p></div>
@@ -77,8 +79,8 @@ export function HomePage() {
 
       <section className={`veda-section ${styles.story}`} id="story" aria-labelledby="story-title">
         <Reveal className={styles.storyImages}>
-          <div className={styles.storyPhoto}><Image src="/assets/process/06-calm-feeding-v3.webp" alt="The Veda dairy worker offers fresh fodder to the Gir cow and Murrah buffalo in a clean shed" fill sizes="(max-width: 600px) calc(100vw - 60px), (max-width: 850px) 592px, (max-width: 1240px) 42vw, 500px" /></div>
-          <div className={styles.storyPortrait}><Image src="/assets/process/worker-reference.webp" alt="The Veda farm worker in clean workwear and protective headwear" fill sizes="(max-width: 600px) 112px, 140px" /></div>
+          <div className={styles.storyPhoto}><Image src="/assets/process/06-calm-feeding-v3.webp" alt="The Veda dairy worker offers fresh fodder to the Gir cow and Murrah buffalo in a clean shed" fill sizes="(max-width: 600px) calc(125vw - 75px), (max-width: 850px) 613px, (max-width: 1240px) 56vw, 674px" /></div>
+          <div className={styles.storyPortrait}><Image src="/assets/process/worker-reference.webp" alt="The Veda farm worker in clean workwear and protective headwear" fill sizes="(max-width: 600px) 192px, 231px" /></div>
           <div className={styles.storyNote}><SiteIcon name="leaf" /><p>It all begins<br /><em>with care.</em></p></div>
         </Reveal>
         <Reveal className={styles.storyCopy}>
@@ -103,6 +105,7 @@ export function HomePage() {
         <Reveal className={styles.deliveryCopy}>
           <p className="veda-kicker">A fresh start, at your doorstep</p><h2 className="veda-heading" id="delivery-title">Your morning,<br /><em>made a little fresher.</em></h2>
           <p className={styles.deliveryDescription}>Good dairy should be easy to bring home. Say hello, tell us what you love and let us take it from there.</p>
+          <FarmDeliveryAnimation />
           <ol className={styles.deliverySteps}><li><span>01</span><div><h3>Start a conversation</h3><p>Message us on WhatsApp. We are happy to help.</p></div></li><li><span>02</span><div><h3>Pick your favourites</h3><p>Share your products, quantities and Surat locality.</p></div></li><li><span>03</span><div><h3>Confirm your delivery</h3><p>We will confirm prices, availability and delivery details.</p></div></li></ol>
           <a className={`veda-button ${styles.deliveryButton}`} href={`${siteConfig.whatsappUrl}?text=${encodeURIComponent("Hello Veda Dairy Farm! I would like to enquire about dairy delivery in Surat.")}`} target="_blank" rel="noreferrer"><SiteIcon name="whatsapp" />Order on WhatsApp</a>
           <div className={styles.deliveryLinks}><a href={`tel:${siteConfig.internationalPhone}`}><SiteIcon name="phone" />Prefer a call? +91 {siteConfig.phone}</a><Link href="/milk-delivery-surat">Milk and dairy delivery details in Surat<SiteIcon name="arrow" /></Link></div>

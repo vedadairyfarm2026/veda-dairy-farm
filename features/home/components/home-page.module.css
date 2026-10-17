@@ -24,10 +24,7 @@
 .heroStamp { position: absolute; top: 32px; right: -18px; width: 104px; height: 104px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px solid #c8b67e; border-radius: 50%; outline: 5px solid var(--cream-50); background: #eee3bc; color: #3e572e; transform: rotate(10deg); }
 .heroStamp span { font-size: .625rem; letter-spacing: .06em; text-transform: uppercase; }
 .heroStamp svg { width: 30px; height: 30px; }
-.heroNote { position: absolute; left: -24px; bottom: 72px; display: flex; align-items: center; gap: 12px; max-width: calc(100% - 20px); padding: 16px 20px; border: 1px solid #ececdd; border-radius: 16px; background: #fffdf5; box-shadow: 0 12px 32px #183d2b12; }
-.heroNote > svg { width: 30px; height: 30px; color: #5e7546; flex-shrink: 0; }
-.heroNote strong { display: block; font-size: .875rem; font-weight: 600; }
-.heroNote small { display: block; margin-top: 4px; font-size: .75rem; color: var(--forest-700); }
+.heroPour { position: absolute; left: -32px; bottom: 64px; width: 232px; max-width: 65%; }
 .trustBand { border-block: 1px solid #dce3ce; background: #eef1e4; }
 .trustInner { max-width: 1240px; margin: auto; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding: 24px 36px; }
 .trustInner > span { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: .875rem; line-height: 1.6; color: var(--forest-800); }
@@ -104,7 +101,7 @@
   .hero h1 { font-size: clamp(3rem,6.4vw,4.25rem); }
   .heroDescription { font-size: 1rem; }
   .heroStamp { right: -8px; width: 88px; height: 88px; }
-  .heroNote { left: -12px; padding: 14px; }
+  .heroPour { left: -16px; width: 210px; }
   .trustInner { padding-inline: 32px; gap: 16px; }
   .trustInner > span { font-size: .8125rem; gap: 8px; }
   .productGrid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
@@ -122,7 +119,7 @@
   .hero h1 { font-size: clamp(3.3rem,8vw,4.5rem); }
   .heroVisual { max-width: 560px; width: 100%; justify-self: center; }
   .heroPhoto { aspect-ratio: 1.1; }
-  .heroNote { left: 16px; bottom: 64px; }
+  .heroPour { left: 16px; bottom: 64px; width: 222px; }
   .sectionHeading { gap: 28px; }
   .sectionDescription { max-width: 300px; }
   .storyImages { max-width: 620px; width: 100%; }
@@ -148,10 +145,7 @@
   .heroStamp { top: 18px; right: 8px; width: 78px; height: 78px; gap: 5px; outline-width: 4px; }
   .heroStamp span { font-size: .5625rem; }
   .heroStamp svg { width: 25px; height: 25px; }
-  .heroNote { left: 12px; bottom: 58px; padding: 12px; gap: 9px; border-radius: 12px; }
-  .heroNote > svg { width: 24px; height: 24px; }
-  .heroNote strong { font-size: .8125rem; }
-  .heroNote small { font-size: .75rem; }
+  .heroPour { position: relative; left: auto; bottom: auto; width: 100%; max-width: none; margin-top: 14px; }
   .photoCaption { padding: 52px 18px 18px; font-size: .75rem; }
   .trustInner { padding: 20px; gap: 10px; }
   .trustInner > span { flex-direction: column; gap: 8px; text-align: center; font-size: .75rem; }
@@ -199,5 +193,4 @@
   .productInfo h3 { font-size: 1.375rem; }
   .productCategory { font-size: .75rem; }
   .heroStamp { width: 70px; height: 70px; }
-  .heroNote { display: none; }
 }

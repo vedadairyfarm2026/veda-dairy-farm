@@ -7,7 +7,8 @@ import { ProcessDetail } from "./process-detail";
 import styles from "./hygienic-process.module.css";
 
 const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const SCENE_SIZES = "(max-width: 600px) calc(100vw - 40px), (max-width: 850px) calc(100vw - 64px), (max-width: 1023px) calc(62.3vw - 40px), (max-width: 1240px) calc(62.3vw - 45px), 728px";
+// Cover crops and the camera zoom require more source pixels than the box width.
+const SCENE_SIZES = "(max-width: 600px) calc(119.45vw - 47.78px), (max-width: 850px) calc(107.5vw - 68.8px), 1100px";
 function subscribeMotion(callback: () => void) {
   const query = window.matchMedia(MOTION_QUERY);
   query.addEventListener("change", callback);
@@ -156,7 +157,7 @@ export function HygienicProcess() {
             <p>{stage.caption}</p>
           </div>
           {active === 9 && <div className={styles.brandReveal}>
-            <Image src="/assets/design/veda-logo.webp" alt="Veda Dairy Farm" width={64} height={64} />
+            <Image src="/assets/design/veda-logo.webp" alt="Veda Dairy Farm" width={64} height={64} sizes="(max-width: 600px) 40px, 52px" />
             <span><strong>Veda Dairy Farm</strong><small>Freshness You Can Trust.</small></span>
           </div>}
         </div>

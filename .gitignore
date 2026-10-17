@@ -27,6 +27,10 @@
 *.pem
 .process-contact-sheet.png
 
+# generated reel frames and review previews
+/social-media/reels/*/frame-*.jpg
+/social-media/reels/*/preview-*.png
+
 # debug
 npm-debug.log*
 yarn-debug.log*

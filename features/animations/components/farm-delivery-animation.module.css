@@ -1,0 +1,153 @@
+.scene {
+  width: 100%;
+  max-width: 475px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #eee7cd;
+  border-radius: 16px;
+  background: #faf7eb;
+  color: #3a5737;
+}
+
+.landscape {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.courier {
+  transform: translateX(334px);
+}
+
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.homeWindow {
+  fill: #e5bd65;
+}
+
+.speedLines {
+  opacity: 0;
+}
+
+.routeTrace {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 17px 6px;
+  border-top: 1px solid #e6e5d5;
+  font-size: .6875rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.caption span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.caption i {
+  width: 5px;
+  height: 5px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #889e6e;
+}
+
+.caption > svg {
+  width: 38px;
+  height: 12px;
+  flex-shrink: 0;
+  color: #9aab82;
+}
+
+.scene[data-motion="full"][data-started="true"] .courier {
+  animation: delivery-travel 4.8s cubic-bezier(.3, 0, .22, 1) 1 both;
+}
+
+.scene[data-motion="full"][data-started="true"] .wheel {
+  animation: delivery-wheel 4.8s cubic-bezier(.3, 0, .22, 1) 1 both;
+}
+
+.scene[data-motion="full"][data-started="true"] .routeTrace {
+  animation: delivery-route 4.8s cubic-bezier(.3, 0, .22, 1) 1 both;
+}
+
+.scene[data-motion="full"][data-started="true"] .homeWindow {
+  animation: delivery-window 4.8s ease 1 both;
+}
+
+.scene[data-motion="full"][data-started="true"] .arrivalMark {
+  animation: delivery-arrival 4.8s ease 1 both;
+}
+
+.scene[data-motion="full"][data-started="true"] .speedLines {
+  animation: delivery-speed 4.8s ease 1 both;
+}
+
+@keyframes delivery-travel {
+  0%, 7% { transform: translateX(100px); }
+  88%, 100% { transform: translateX(334px); }
+}
+
+@keyframes delivery-wheel {
+  0%, 7% { transform: rotate(0); }
+  88%, 100% { transform: rotate(1118deg); }
+}
+
+@keyframes delivery-route {
+  0%, 7% { stroke-dashoffset: 1; }
+  88%, 100% { stroke-dashoffset: 0; }
+}
+
+@keyframes delivery-window {
+  0%, 76% { fill: #c9d3b3; }
+  92%, 100% { fill: #e5bd65; }
+}
+
+@keyframes delivery-arrival {
+  0%, 79% { opacity: 0; }
+  94%, 100% { opacity: 1; }
+}
+
+@keyframes delivery-speed {
+  0%, 10% { opacity: 0; }
+  20%, 55% { opacity: .8; }
+  80%, 100% { opacity: 0; }
+}
+
+@media (max-width: 359px) {
+  .caption {
+    gap: 7px;
+    padding-inline: 10px;
+    font-size: .625rem;
+  }
+
+  .caption > svg {
+    width: 24px;
+  }
+
+  .caption span {
+    gap: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene[data-motion="full"][data-started="true"] .courier,
+  .scene[data-motion="full"][data-started="true"] .wheel,
+  .scene[data-motion="full"][data-started="true"] .routeTrace,
+  .scene[data-motion="full"][data-started="true"] .homeWindow,
+  .scene[data-motion="full"][data-started="true"] .arrivalMark,
+  .scene[data-motion="full"][data-started="true"] .speedLines {
+    animation: none;
+  }
+}

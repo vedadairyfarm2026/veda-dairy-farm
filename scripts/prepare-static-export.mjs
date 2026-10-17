@@ -8,7 +8,7 @@ let saved = 0;
 
 // These are source artwork; next/image uses generated variants instead.
 // Originals in public/ remain untouched for future edits and social-image builds.
-const originals = ["dahi.png", "dairy-lineup.png", "delivery.png", "ghee.png",
+const originals = ["dahi.png", "delivery.png", "ghee.png",
   "hero-farm.png", "milk-bottle.png", "paneer.png", "veda-logo.png"];
 const sourceScenes = (await readdir(join(assets, "process")))
   .filter(name => name.endsWith(".webp")).map(name => join("process", name));

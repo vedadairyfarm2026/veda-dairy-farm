@@ -1,0 +1,12 @@
+.scene { position: relative; isolation: isolate; }
+.art { min-width: 0; }
+.scene[data-running="false"] .art * { animation-play-state: paused !important; }
+.replay { display: flex; visibility: hidden; align-items: center; justify-content: center; gap: 4px; min-height: 44px; margin-left: auto; margin-right: 5px; padding: 5px 10px; border: 0; border-radius: 999px; background: transparent; color: #52614b; font: inherit; font-size: .6875rem; cursor: pointer; }
+.replay svg { width: 14px; height: 14px; }
+.scene[data-motion="full"] .replay { visibility: visible; }
+.replay:hover { background: #e8eee0; color: #1d422e; }
+.replay:focus-visible { outline: 2px solid #7d5a22; outline-offset: -4px; box-shadow: none; }
+@media (prefers-reduced-motion: reduce) {
+  .scene .art * { animation: none !important; transition: none !important; }
+  .scene .replay { visibility: hidden; }
+}

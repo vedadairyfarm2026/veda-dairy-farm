@@ -77,7 +77,7 @@ const frames = [
   },
 ];
 
-const logo = await sharp(join(reelDir, "veda-logo.png"))
+const logo = await sharp(fileURLToPath(new URL("../../../public/assets/veda-logo.png", import.meta.url)))
   .resize(170, 170, { fit: "contain" })
   .png()
   .toBuffer();
