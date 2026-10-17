@@ -14,6 +14,16 @@ The website is configured for **https://www.vedadairyfarm.com** and the confirme
 
 No unverified prices, ratings, certifications or product claims have been added to structured data. FAQ answers are visible page content. Google retired FAQ rich results in May 2026, so no FAQ rich-result markup has been added.
 
+## Confirmed delivery and product information
+
+`config/commerce.ts` is the shared source for customer-facing delivery details and optional product facts. The owner confirmed Surat delivery, a **6:00 AM–9:00 PM** delivery window and **currently free delivery**. The delivery page and homepage FAQ show these details. Product prices and pack sizes have not been decided; minimum order and individual delivery PIN codes have not been supplied. Empty values stay hidden instead of publishing assumptions.
+
+For each product, add only confirmed source, preparation, ingredients, storage instructions, shelf life and pack offers to `productCommerce`. An offer needs its actual name, pack size and INR price; availability is optional. The product page renders that information and matching Product/Offer JSON-LD only when offers exist. Cow and buffalo offers remain separate products. Rebuild after changes, and keep visible prices and availability current. No Product/Offer markup is currently emitted because no prices were provided.
+
+The homepage now describes fresh milk and dairy delivery in Surat directly and includes the confirmed Ambheta/Olpad farm location. Generated farm, worker, delivery and product images are identified as illustrations. Replace those assets and their captions with genuine business photographs when supplied; generated scenes do not document farm operations. A personal owner story and customer testimonials still require authentic material from the owner/customers.
+
+Set `NEXT_PUBLIC_GOOGLE_MAPS_URL` to the real verified listing link. Until it is supplied, the contact link explicitly searches for Ambheta rather than presenting a claimed listing. Set `NEXT_PUBLIC_GOOGLE_REVIEW_URL` to the actual **Ask for reviews** link from that Business Profile to display an honest-review invitation. The review invitation stays hidden without the link. Business Profile creation/verification and collecting real customer reviews happen in the owner's Google account; website code cannot verify the business or create customer reviews.
+
 ## Build and check
 
 ```powershell

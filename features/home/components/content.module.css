@@ -6,6 +6,10 @@
 .introText { max-width: 540px; margin-top: 24px; color: var(--forest-700); font-size: 1rem; line-height: 1.8; }
 .heroActions { margin-top: 28px; }
 .note { margin-top: 14px; max-width: 480px; color: var(--forest-700); font-size: .875rem; line-height: 1.7; }
+.factsGrid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 36px; margin-top: 28px; }
+.factsGrid > div { min-width: 0; border-top: 1px solid var(--line); padding-top: 16px; }
+.factsGrid dt { font-weight: 600; color: var(--forest-900); }
+.factsGrid dd { margin-top: 8px; color: var(--forest-700); font-size: 1rem; line-height: 1.8; }
 .photo { position: relative; min-width: 0; aspect-ratio: 1; overflow: hidden; border-radius: 140px 140px 24px 24px; background: var(--sage-100); }
 .photo img { object-fit: cover; }
 .infoBand { border-block: 1px solid var(--line); background: #eef1e5; }
@@ -35,6 +39,7 @@
 @media (max-width: 1023px) { .hero { gap: 36px; } .relatedGrid[data-columns="4"] { grid-template-columns: repeat(2,minmax(0,1fr)); } .faqSection { gap: 36px; } }
 @media (max-width: 850px) { .hero { grid-template-columns: 1fr; } .photo { max-width: 560px; width: 100%; justify-self: center; } .infoGrid { gap: 28px; } .faqSection { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {
+  .factsGrid { grid-template-columns: 1fr; }
   .intro { padding-top: 20px; }
   .breadcrumb { margin-bottom: 24px; }
   .hero { gap: 32px; }

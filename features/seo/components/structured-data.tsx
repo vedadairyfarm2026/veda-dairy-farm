@@ -1,5 +1,6 @@
 import { absoluteUrl, siteUrl } from "@/config/seo";
-import { siteConfig } from "@/config/site";
+import { products, siteConfig } from "@/config/site";
+import type { ProductCommercialDetails } from "@/config/commerce";
 
 type JsonLd = Record<string, unknown>;
 
@@ -45,6 +46,37 @@ export function BusinessStructuredData() {
         name: siteConfig.name, inLanguage: "en-IN", publisher: { "@id": `${siteUrl}/#business` },
       },
     ],
+  }} />;
+}
+
+// Only publish offer markup when a real pack and price are also visible on-page.
+export function ProductStructuredData({ product, description, details }: {
+  product: typeof products[number];
+  description: string;
+  details: ProductCommercialDetails;
+}) {
+  if (!siteUrl || !details.offers.length) return null;
+  const url = absoluteUrl(`/products/${product.slug}`)!;
+  return <StructuredData data={{
+    "@context": "https://schema.org",
+    "@graph": details.offers.map((offer, index) => ({
+      "@type": "Product",
+      "@id": `${url}#product-${index + 1}`,
+      name: `${offer.name} — ${offer.packSize}`,
+      description,
+      image: absoluteUrl(product.image),
+      category: product.category,
+      brand: { "@type": "Brand", name: siteConfig.name },
+      size: offer.packSize,
+      offers: {
+        "@type": "Offer",
+        url: `${url}#product-offer-${index + 1}`,
+        price: offer.priceInr,
+        priceCurrency: "INR",
+        seller: { "@id": `${siteUrl}/#business` },
+        ...(offer.availability ? { availability: `https://schema.org/${offer.availability}` } : {}),
+      },
+    })),
   }} />;
 }
 

@@ -21,9 +21,9 @@
 .heroPhoto > img { object-fit: cover; object-position: center; }
 .photoCaption { position: absolute; inset: auto 0 0; display: flex; align-items: center; gap: 9px; padding: 64px 24px 24px; color: white; background: linear-gradient(transparent,rgba(18,43,25,.88) 55%,rgba(18,43,25,.95)); font-size: .8125rem; line-height: 1.5; }
 .photoCaption svg { width: 18px; height: 18px; color: #eee0b7; }
-.heroStamp { position: absolute; top: 32px; right: -18px; width: 104px; height: 104px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px solid #c8b67e; border-radius: 50%; outline: 5px solid var(--cream-50); background: #eee3bc; color: #3e572e; transform: rotate(10deg); }
-.heroStamp span { font-size: .625rem; letter-spacing: .06em; text-transform: uppercase; }
-.heroStamp svg { width: 30px; height: 30px; }
+.heroStamp { position: absolute; top: 32px; right: -18px; width: 112px; height: 112px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; border: 1px solid #c8b67e; border-radius: 50%; outline: 5px solid var(--cream-50); background: #eee3bc; color: #3e572e; transform: rotate(10deg); }
+.heroStamp span { flex-shrink: 0; font-size: .625rem; line-height: 1.2; letter-spacing: .06em; text-align: center; text-transform: uppercase; white-space: nowrap; }
+.heroStamp svg { width: 30px; height: 30px; flex-shrink: 0; }
 .heroPour { position: absolute; left: -32px; bottom: 64px; width: 232px; max-width: 65%; }
 .trustBand { border-block: 1px solid #dce3ce; background: #eef1e4; }
 .trustInner { max-width: 1240px; margin: auto; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; padding: 24px 36px; }
@@ -53,6 +53,7 @@
 .storyImages { position: relative; min-width: 0; padding-right: 28px; padding-bottom: 44px; }
 .storyPhoto { position: relative; aspect-ratio: 1.15; overflow: hidden; border-radius: 24px 130px 24px 24px; background: #e4e9da; }
 .storyPhoto img { object-fit: cover; object-position: 64% center; }
+.storyCaption { position: absolute; top: 16px; left: 16px; max-width: calc(100% - 32px); padding: 7px 11px; border-radius: 999px; background: #fffdf2f2; color: var(--forest-900); font-size: .75rem; line-height: 1.5; }
 .storyPortrait { position: absolute; right: 0; bottom: 0; width: 140px; height: 168px; overflow: hidden; border: 7px solid var(--cream-50); border-radius: 80px 80px 18px 18px; }
 .storyPortrait img { object-fit: cover; object-position: 50% 30%; }
 .storyNote { position: absolute; left: 20px; bottom: 0; display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: #e7e3c7; border-radius: 14px; }
@@ -100,7 +101,7 @@
   .hero { padding: 48px 32px 64px; gap: 32px; }
   .hero h1 { font-size: clamp(3rem,6.4vw,4.25rem); }
   .heroDescription { font-size: 1rem; }
-  .heroStamp { right: -8px; width: 88px; height: 88px; }
+  .heroStamp { right: -8px; }
   .heroPour { left: -16px; width: 210px; }
   .trustInner { padding-inline: 32px; gap: 16px; }
   .trustInner > span { font-size: .8125rem; gap: 8px; }
@@ -142,7 +143,7 @@
   .heroActions a { font-size: .9375rem; }
   .heroMeta { margin-top: 18px; font-size: .8125rem; }
   .heroPhoto { aspect-ratio: 1.08; border-radius: 180px 180px 20px 20px; }
-  .heroStamp { top: 18px; right: 8px; width: 78px; height: 78px; gap: 5px; outline-width: 4px; }
+  .heroStamp { top: 18px; right: 8px; width: 104px; height: 104px; gap: 5px; outline-width: 4px; }
   .heroStamp span { font-size: .5625rem; }
   .heroStamp svg { width: 25px; height: 25px; }
   .heroPour { position: relative; left: auto; bottom: auto; width: 100%; max-width: none; margin-top: 14px; }
@@ -192,5 +193,4 @@
   .productImage { width: 88px; height: 112px; }
   .productInfo h3 { font-size: 1.375rem; }
   .productCategory { font-size: .75rem; }
-  .heroStamp { width: 70px; height: 70px; }
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { products, promisePoints, siteConfig } from "@/config/site";
+import { deliveryDetails } from "@/config/commerce";
 import { HygienicProcess } from "@/features/hygienic-process/components/hygienic-process";
 import { AnimatedCard, Reveal } from "@/features/animations/components/page-animations";
 import { MilkPourAnimation } from "@/features/animations/components/milk-pour-animation";
@@ -12,9 +13,10 @@ import { FaqList } from "./faq-list";
 import styles from "./home-page.module.css";
 
 const questions = [
+  { question: "Where is Veda Dairy Farm based?", answer: "Our farm is in Ambheta Village, Olpad Taluka, Surat District, Gujarat. We keep Gir cows and Murrah buffaloes and offer milk and dairy products for home delivery in Surat." },
   { question: "Which dairy products can I order?", answer: "Choose from fresh cow and buffalo milk, dahi, traditional ghee and paneer. Message us for current availability, quantities and prices." },
   { question: "How do I place an order?", answer: "Tap any WhatsApp order button, tell us what you need and share your Surat locality. We will confirm availability, pricing and delivery details before you order." },
-  { question: "Do you deliver to my area in Surat?", answer: "We serve Surat homes. Send us your locality on WhatsApp and we will confirm whether delivery is available to your address." },
+  { question: "When do you deliver in Surat, and is delivery free?", answer: `We deliver in Surat${deliveryDetails.timings ? ` from ${deliveryDetails.timings}` : ""}.${deliveryDetails.charges ? ` Delivery charges: ${deliveryDetails.charges}.` : ""} Send your locality or PIN code so we can arrange the route and timing for your address. Product prices are confirmed separately before you order.` },
   { question: "How is your milk collected?", answer: "Our Gir cow and Murrah buffalo are milked gently by hand. Clean hands, individual towels, separate first-stream checks, clean pails and prompt cooling are part of the routine. Explore the ten-step journey above." },
   { question: "Can I ask about regular delivery?", answer: "Of course. Tell us the products and quantities you usually need, and we will discuss the delivery options available for your locality." },
 ];
@@ -31,7 +33,7 @@ export function HomePage() {
       <section className={styles.hero} id="top" aria-labelledby="hero-title">
         <div className={styles.heroCopy}>
           <p className={styles.eyebrow}><SiteIcon name="leaf" />Freshness You Can Trust.</p>
-          <h1 id="hero-title">Good mornings<br />begin with<br /><em>good milk.</em></h1>
+          <h1 id="hero-title">Fresh milk &amp;<br />dairy delivery<br /><em>in Surat.</em></h1>
           <p className={styles.heroDescription}>Fresh cow and buffalo milk, dahi, ghee and paneer from Veda Dairy Farm in Ambheta, with local home delivery in Surat.</p>
           <div className={styles.heroActions}>
             <a className={`veda-button ${styles.primaryButton}`} href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer"><SiteIcon name="whatsapp" />Order on WhatsApp</a>
@@ -41,9 +43,9 @@ export function HomePage() {
         </div>
         <div className={styles.heroVisual}>
           <div className={styles.heroPhoto}>
-            <Image src="/assets/design/hero-farm.webp" alt="A Gir cow and Murrah buffalo together on a sunlit farm, beside a clean milk can" fill preload
+            <Image src="/assets/design/hero-farm.webp" alt="Illustration of a Gir cow and Murrah buffalo beside a milk can on a sunlit farm" fill preload
               sizes="(max-width: 359px) calc(100vw - 32px), (max-width: 600px) calc(100vw - 40px), (max-width: 850px) 560px, (max-width: 1240px) 42vw, 510px" />
-            <div className={styles.photoCaption}><SiteIcon name="sun" />Our farm. Your everyday goodness.</div>
+            <div className={styles.photoCaption}><SiteIcon name="sun" />An illustrative farm scene.</div>
           </div>
           <div className={styles.heroStamp} aria-label="Farm fresh, made with care"><span>Farm fresh</span><SiteIcon name="sun" /><span>Made with care</span></div>
           <div className={styles.heroPour}><MilkPourAnimation /></div>
@@ -64,7 +66,7 @@ export function HomePage() {
         <div className={styles.productGrid}>
           {products.map((product, index) => <AnimatedCard className={styles.productCard} key={product.slug}>
             <Link className={styles.productImage} href={`/products/${product.slug}`} aria-label={`Explore ${product.title.toLowerCase()}`}>
-              <Image src={product.image} alt={product.title} fill sizes="(max-width: 359px) 112px, (max-width: 479px) 128px, (max-width: 600px) calc(50vw - 30px), (max-width: 1023px) calc(50vw - 44px), 274px" />
+              <Image src={product.image} alt={`Illustration of ${product.title.toLowerCase()}`} fill sizes="(max-width: 359px) 112px, (max-width: 479px) 128px, (max-width: 600px) calc(50vw - 30px), (max-width: 1023px) calc(50vw - 44px), 274px" />
               <span className={styles.productNumber}>0{index + 1}</span>
             </Link>
             <div className={styles.productInfo}><span className={styles.productCategory}>{product.category}</span><h3><Link href={`/products/${product.slug}`}>{product.title}</Link></h3><p>{product.description}</p></div>
@@ -74,19 +76,19 @@ export function HomePage() {
             </div>
           </AnimatedCard>)}
         </div>
-        <div className={styles.sectionFoot}><span>Simple ingredients. Familiar favourites.</span><span>Milk · Dahi · Ghee · Paneer</span></div>
+        <div className={styles.sectionFoot}><span>Product images are illustrative.</span><span>Milk · Dahi · Ghee · Paneer</span></div>
       </section>
 
       <section className={`veda-section ${styles.story}`} id="story" aria-labelledby="story-title">
         <Reveal className={styles.storyImages}>
-          <div className={styles.storyPhoto}><Image src="/assets/process/06-calm-feeding-v3.webp" alt="The Veda dairy worker offers fresh fodder to the Gir cow and Murrah buffalo in a clean shed" fill sizes="(max-width: 600px) calc(125vw - 75px), (max-width: 850px) 613px, (max-width: 1240px) 56vw, 674px" /></div>
-          <div className={styles.storyPortrait}><Image src="/assets/process/worker-reference.webp" alt="The Veda farm worker in clean workwear and protective headwear" fill sizes="(max-width: 600px) 192px, 231px" /></div>
+          <div className={styles.storyPhoto}><Image src="/assets/process/06-calm-feeding-v3.webp" alt="Illustration of a dairy worker offering fodder to a Gir cow and Murrah buffalo in a clean shed" fill sizes="(max-width: 600px) calc(125vw - 75px), (max-width: 850px) 613px, (max-width: 1240px) 56vw, 674px" /><span className={styles.storyCaption}>Illustrative farm scenes</span></div>
+          <div className={styles.storyPortrait}><Image src="/assets/process/worker-reference.webp" alt="Illustrated dairy worker in clean workwear and protective headwear" fill sizes="(max-width: 600px) 192px, 231px" /></div>
           <div className={styles.storyNote}><SiteIcon name="leaf" /><p>It all begins<br /><em>with care.</em></p></div>
         </Reveal>
         <Reveal className={styles.storyCopy}>
-          <p className="veda-kicker">Rooted in the Veda way</p><h2 className="veda-heading" id="story-title">A farm you can<br /><em>feel close to.</em></h2>
-          <p>Behind every bottle is a morning of thoughtful care. Fresh feed, calm animals and traditional hand milking are part of our daily rhythm.</p>
-          <p>We bring that same care to the dairy you take home. Honest food, familiar flavours and a real connection to where it all begins.</p>
+          <p className="veda-kicker">Rooted in the Veda way</p><h2 className="veda-heading" id="story-title">From Ambheta,<br /><em>for Surat homes.</em></h2>
+          <p>Veda Dairy Farm is based in Ambheta Village, Olpad Taluka, Surat District, Gujarat. We care for Gir cows and Murrah buffaloes, with traditional hand milking as part of our daily routine.</p>
+          <p>Clean collection and careful cold handling carry that care through to the dairy you bring home. Our ten-step farm-to-home journey explains the routine, from preparing for milking to local delivery.</p>
           <ul className={styles.benefits}><li><SiteIcon name="check" />Care for our Gir cows and Murrah buffaloes</li><li><SiteIcon name="check" />Traditional hand milking, every morning</li><li><SiteIcon name="check" />Clean collection and careful cold handling</li></ul>
           <a className="veda-link" href="#process">Follow our farm-to-home journey<SiteIcon name="arrow" /></a>
         </Reveal>
@@ -111,8 +113,8 @@ export function HomePage() {
           <div className={styles.deliveryLinks}><a href={`tel:${siteConfig.internationalPhone}`}><SiteIcon name="phone" />Prefer a call? +91 {siteConfig.phone}</a><Link href="/milk-delivery-surat">Milk and dairy delivery details in Surat<SiteIcon name="arrow" /></Link></div>
         </Reveal>
         <Reveal className={styles.deliveryPhoto}>
-          <Image src="/assets/design/delivery.webp" alt="A fresh basket of milk, dahi, ghee and paneer being delivered at a home's doorstep" fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 850px) 560px, (max-width: 1240px) 42vw, 500px" />
-          <div className={styles.deliveryNote}><SiteIcon name="leaf" /><div><strong>From our farm. To your door.</strong><small>Fresh local delivery in Surat.</small></div></div>
+          <Image src="/assets/design/delivery.webp" alt="Illustration of milk, dahi, ghee and paneer being delivered at a home's doorstep" fill sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 850px) 560px, (max-width: 1240px) 42vw, 500px" />
+          <div className={styles.deliveryNote}><SiteIcon name="leaf" /><div><strong>From our farm. To your door.</strong><small>Illustration of home delivery in Surat.</small></div></div>
         </Reveal>
       </div></section>
 

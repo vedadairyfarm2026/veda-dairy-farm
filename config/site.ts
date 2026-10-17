@@ -26,6 +26,7 @@ export const siteConfig = {
   phone: "7567752001",
   internationalPhone: "+917567752001",
   mapsUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL?.trim() || "",
+  reviewUrl: process.env.NEXT_PUBLIC_GOOGLE_REVIEW_URL?.trim() || "",
   whatsappUrl: "https://wa.me/917567752001",
   instagramUrl: "https://www.instagram.com/vedadairyfarm2026/",
   facebookUrl: "https://www.facebook.com/vedadairyfarm2026/",

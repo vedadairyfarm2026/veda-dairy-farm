@@ -2,19 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/config/site";
 import { siteConfig } from "@/config/site";
+import { productCommerce } from "@/config/commerce";
 import { SiteHeader } from "@/features/home/components/site-header";
 import { SiteFooter } from "@/features/home/components/site-footer";
 import { SiteIcon } from "@/features/home/components/site-icon";
 import { FaqList } from "@/features/home/components/faq-list";
-import { PageStructuredData } from "@/features/seo/components/structured-data";
+import { PageStructuredData, ProductStructuredData } from "@/features/seo/components/structured-data";
 import styles from "@/features/home/components/content.module.css";
 import type { ProductDetail } from "../data/product-details";
+import { ProductInformation } from "./product-information";
 
 export function ProductPage({ product, detail }: { product: typeof products[number]; detail: ProductDetail }) {
   const path = `/products/${product.slug}`;
+  const commerce = productCommerce[product.slug];
   const orderUrl = `${siteConfig.whatsappUrl}?text=${encodeURIComponent(`Hello Veda Dairy Farm! I would like to enquire about ${product.title}. Please share quantities, prices and delivery details for my Surat locality.`)}`;
   return <>
     <PageStructuredData title={detail.seoTitle} description={detail.description} path={path} breadcrumbs={[{ name: "Home", path: "/" }, { name: product.title, path }]} />
+    <ProductStructuredData product={product} description={detail.description} details={commerce} />
     <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-5 focus:z-[100] focus:rounded-lg focus:bg-forest-900 focus:p-4 focus:text-white">Skip to content</a>
     <SiteHeader />
     <main id="main-content">
@@ -23,14 +27,16 @@ export function ProductPage({ product, detail }: { product: typeof products[numb
         <div className={styles.hero}>
           <div><p className="veda-kicker">From Veda Dairy Farm, Ambheta</p><h1>{detail.heading}</h1><p className={styles.introText}>{detail.intro}</p>
             <div className={styles.heroActions}><a className="veda-button bg-forest-900 text-white hover:bg-forest-800" href={orderUrl} target="_blank" rel="noreferrer"><SiteIcon name="whatsapp" />Ask about {product.category.toLowerCase()}</a></div>
-            <p className={styles.note}>Prices, quantities and delivery are confirmed before you order.</p>
+            <p className={styles.note}>{commerce.offers.length ? "See pack sizes and prices below. Delivery is confirmed for your address before you order." : "Contact us for current pack sizes and prices. Delivery is confirmed for your address before you order."}</p>
           </div>
-          <div className={styles.photo}><Image src={product.image} alt={`${product.title} from Veda Dairy Farm`} fill preload sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 850px) 560px, (max-width: 1240px) 45vw, 552px" /></div>
+          <div><div className={styles.photo}><Image src={product.image} alt={`Illustration of ${product.title.toLowerCase()}`} fill preload sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 850px) 560px, (max-width: 1240px) 45vw, 552px" /></div><p className={styles.note}>Illustrative product image.</p></div>
         </div>
       </section>
+      <ProductInformation details={commerce} />
       <section className={styles.infoBand} aria-label={`About ${product.title}`}><div className="veda-section">
         <div className={styles.infoGrid}>{detail.sections.map(section => <article key={section.heading}><h2>{section.heading}</h2><p>{section.text}</p></article>)}</div>
         <Link className="veda-link" href="/milk-delivery-surat">How dairy delivery works in Surat<SiteIcon name="arrow" /></Link>
+        <div className="mt-3"><Link className="veda-link" href="/#process">Explore our milk collection and cooling routine<SiteIcon name="arrow" /></Link></div>
       </div></section>
       <section className={`veda-section ${styles.faqSection}`} aria-labelledby="product-faq">
         <div><p className="veda-kicker">Before you order</p><h2 className="veda-heading" id="product-faq">Your {product.category.toLowerCase()} questions</h2></div>
